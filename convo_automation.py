@@ -89,5 +89,5 @@ def slack2convo():
         "text":f"The following message posted by {slack_user_name} will be shared on convo by abdullah"})
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', port='5000', debug=False)
+   app.run(host=os.environ["HOST"], port=os.environ["PORT"], debug=False)
     
