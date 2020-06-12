@@ -1,0 +1,10 @@
+{
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--net","host",
+        "--env-file","${localWorkspaceFolder}/.env",
+        "-v", "/dev/shm:/dev/shm",
+        "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+        "--env","DISPLAY"
+    ]
+}
