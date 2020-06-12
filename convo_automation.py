@@ -16,7 +16,7 @@ def eprint(*args, **kwargs):
 def post2convo(email="", pwd="", title="", text=""):
     """post message to convo by opening firefox in 
     headless mode. Also, note we are specifying JS 
-    to here to be run in broswer.
+    here to be run in broswer.
     """
     options = Options()
     options.headless = True
