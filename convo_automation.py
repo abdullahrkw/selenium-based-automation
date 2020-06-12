@@ -42,7 +42,6 @@ def post2convo(email="", pwd="", title="", text=""):
     };
     let text = document.getElementById('ql-editor-1').innerHTML;
     document.getElementById('ql-editor-1').innerHTML = linkify(text);
-    console.log("testing");
     '''
     driver.execute_script(browser_js)
     driver.find_element_by_css_selector("button.btn-primary").click()
