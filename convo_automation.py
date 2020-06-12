@@ -14,6 +14,10 @@ def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
 def post2convo(email="", pwd="", title="", text=""):
+    """post message to convo by opening firefox in 
+    headless mode. Also, note we are specifying JS 
+    to here to be run in broswer.
+    """
     options = Options()
     options.headless = True
     driver = webdriver.Firefox(options=options)
@@ -47,6 +51,9 @@ def post2convo(email="", pwd="", title="", text=""):
 app = Flask(__name__)
 @app.route('/post2convo', methods=['POST'])
 def request2post():
+    """server generic post2convo POST request. Runs post2convo() 
+    in separate thread.
+    """
     json_request = request.get_json (force=True, silent=False, cache=True)
     threading.Thread(target=post2convo, args=(
      json_request["convo_email"],
@@ -57,6 +64,10 @@ def request2post():
 
 @app.route('/slack/post2convo', methods=['POST'])
 def slack2convo():
+    """server slack based post2convo POST request. Runs post2convo() 
+    in separate thread. slack sends POST data in www-data-urlencoded 
+    and not in json
+    """
     slack_message = request.form["text"]
     slack_user_name = request.form["user_name"]
     convo_title = ""
@@ -78,5 +89,5 @@ def slack2convo():
         "text":f"The following message posted by {slack_user_name} will be shared on convo by abdullah"})
 
 if __name__ == '__main__':
-   app.run(host='0.0.0.0', port='5000', debug=True)
+   app.run(host='0.0.0.0', port='5000', debug=False)
     
