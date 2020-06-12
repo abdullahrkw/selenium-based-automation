@@ -10,7 +10,6 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 
 
-
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
